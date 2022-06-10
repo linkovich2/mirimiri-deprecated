@@ -19,7 +19,7 @@ async function createWindow() {
     autoHideMenuBar: true,
     minWidth: 800,
     minHeight: 600,
-    title: 'Miri Miri',
+    title: 'MiriMiri',
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info

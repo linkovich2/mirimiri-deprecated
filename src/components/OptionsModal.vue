@@ -6,7 +6,7 @@
           <h1>Options</h1>
           <label>Fullscreen</label>
           <input type="checkbox" v-model="settings.fullscreen" :checked="fullscreen">
-          <button class="modal-default-button" @click="$emit('close')">Save</button>
+          <button class="modal-default-button" @click="$emit('close')">OK</button>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@ export default {
   watch: {
     settings: {
       handler(data) {
-        const raw = JSON.parse(JSON.stringify(data));
+        const raw = JSON.parse(JSON.stringify(data))
         ipcRenderer.invoke('update-settings', raw)
       },
       deep: true

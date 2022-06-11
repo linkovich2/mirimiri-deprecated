@@ -5,7 +5,7 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-const { Settings } = require('./system')
+const { Settings, registerSettingsHandlers } = require('./system')
 const settings     = new Settings();
 
 // Scheme must be registered before the app is ready
@@ -109,27 +109,4 @@ if (isDevelopment) {
   }
 }
 
-// API Methods to handle saving and loading
-// @todo move these somewhere sane ?
-ipcMain.handle('get-settings', async (event, data) => {
-  return settings
-})
-
-ipcMain.handle('update-settings', async (event, data) => {
-  let win = BrowserWindow.getFocusedWindow()
-  // respond to the fullscreen change here, because might as well
-  if (data.fullscreen && !settings.fullscreen) {
-    win.setFullScreen(true)
-  } else if (!data.fullscreen && settings.fullscreen) {
-    win.setFullScreen(false)
-  }
-
-  settings.fullscreen  = data.fullscreen
-  settings.skip_splash = data.skip_splash
-  settings.save()
-})
-
-ipcMain.handle('quit', async (event, data) => {
-  let win = BrowserWindow.getFocusedWindow()
-  win.close()
-})
+settings.registerSettingsHandlers()

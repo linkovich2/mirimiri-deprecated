@@ -9,10 +9,9 @@
 </template>
 
 <script>
-const { ipcRenderer } = require('electron')
-
 export default {
   name: 'CharacterCreate',
+  inject: ['game'],
   data() {
     return {
       character: {
@@ -29,11 +28,11 @@ export default {
         return;
       }
 
-      const raw = JSON.parse(JSON.stringify(this.character));
-      ipcRenderer.invoke('create-character', raw).then((character) => {
-        console.log(character)
-        // load the character into the global game object
-        // move onto the play screen
+      const raw = JSON.parse(JSON.stringify({
+        character: this.character
+      }));
+      this.game.save(raw, () => {
+        this.$router.push('/play')
       })
     }
   }

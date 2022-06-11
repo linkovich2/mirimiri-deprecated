@@ -5,8 +5,9 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-const { Settings, registerSettingsHandlers } = require('./system')
+const { Settings, SaveManager } = require('./system')
 const settings     = new Settings();
+const saveManager  = new SaveManager();
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -109,4 +110,5 @@ if (isDevelopment) {
   }
 }
 
-settings.registerSettingsHandlers()
+settings.registerHandlers()
+saveManager.registerHandlers()

@@ -46,7 +46,7 @@ exports.Settings = class {
     })
   }
 
-  registerSettingsHandlers() {
+  registerHandlers() {
     ipcMain.handle('get-settings', async (event, data) => {
       return this
     })

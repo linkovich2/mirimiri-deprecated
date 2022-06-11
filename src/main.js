@@ -8,6 +8,7 @@ import TravelScreen from './components/TravelScreen.vue'
 import PlayScreen from './components/PlayScreen.vue'
 import CharacterSelect from './components/CharacterSelect.vue'
 import CharacterCreate from './components/CharacterCreate.vue'
+import Game from './engine/game.js'
 
 const routes = [
   { path: '/menu', component: MainMenu, meta: { transition: 'fade' } },
@@ -23,8 +24,11 @@ const router = createRouter({
   routes
 })
 
+const game = new Game()
+
 const app = createApp({})
 app.use(router)
+app.provide('game', game)
 app.mount('#app')
 
 ipcRenderer.invoke('get-settings').then((settings) => {

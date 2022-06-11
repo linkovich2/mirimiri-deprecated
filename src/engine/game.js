@@ -1,0 +1,24 @@
+import { EventEmitter } from './event_emitter.js'
+const { ipcRenderer } = require('electron')
+
+export default class Game extends EventEmitter {
+  save(data, callback) {
+    ipcRenderer.invoke('save', data).then((save) => {
+      this.load(save.id, callback)
+    })
+  }
+
+  load(id, callback) {
+    ipcRenderer.invoke('load', id).then((save) => {
+      // @todo this is expanded later to also apply other game information from the save file
+      this.character = save.character
+      callback()
+    })
+  }
+
+  saves(callback) {
+    ipcRenderer.invoke('get-saves').then((saves) => {
+      callback(saves)
+    })
+  }
+}

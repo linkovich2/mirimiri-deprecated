@@ -109,6 +109,7 @@ if (isDevelopment) {
 }
 
 // API Methods to handle saving and loading
+// @todo move these somewhere sane ?
 ipcMain.handle('get-settings', async (event, data) => {
   return settings
 })

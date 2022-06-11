@@ -110,5 +110,9 @@ if (isDevelopment) {
   }
 }
 
+ipcMain.handle('dev-mode?', () => {
+  return isDevelopment
+})
+
 settings.registerHandlers()
 saveManager.registerHandlers()

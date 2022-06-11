@@ -1,7 +1,9 @@
 <template>
-  <h1>Travel Map</h1>
+  <div class="">
+    <h1>Travel Map</h1>
 
-  <router-link to="/play">Local Map</router-link>
+    <router-link to="/play">Local Map</router-link>
+  </div>
 </template>
 
 <script>

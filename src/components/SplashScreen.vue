@@ -1,7 +1,7 @@
 <template>
   <div id="splash-container">
-    <h1>Splash Screen</h1>
-    <p>ESC to skip</p>
+    <h1>Studio Name ???</h1>
+    <p>ESC to Skip</p>
   </div>
 </template>
 
@@ -9,15 +9,21 @@
 export default {
   name: 'SplashScreen',
   mounted() {
-    setTimeout(() => {
-      this.$router.push('/menu')
-    }, 10000)
+    setTimeout(() => { this.skip() }, 6000)
 
     window.addEventListener('keydown', (e) => {
       if (e.key == 'Escape') {
-        this.$router.push('/menu')
+        this.skip()
       }
     });
+  },
+  methods: {
+    skip() {
+      // this is necessary because if they hit escape, the timeout still triggers
+      if (this.$router.currentRoute.value.path === '/splash') {
+        this.$router.push('/menu')
+      }
+    }
   }
 }
 </script>
@@ -26,13 +32,11 @@ export default {
   #splash-container {
     width: 100%;
     height: 100%;
-    text-align: center;
-  }
-
-  h1 {
-    top: 45%;
-    left: 45%;
-    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
   }
 
   p {
@@ -41,4 +45,15 @@ export default {
     right: 0;
     margin: 20px;
   }
+
+  .fade-enter-active,
+  .fade-enter-to {
+    transition: opacity 3s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
 </style>

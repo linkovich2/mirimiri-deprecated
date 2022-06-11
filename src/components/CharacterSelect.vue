@@ -1,13 +1,15 @@
 <template>
-  <h1>Load Game</h1>
+  <div class="">
+    <h1>Load Game</h1>
 
-  <ul>
-    <li v-for="(save) in saves" :key="save.id" @click="load(save.id)">
-      {{ save.character }}
-    </li>
-  </ul>
+    <ul>
+      <li v-for="(save) in saves" :key="save.id" @click="load(save.id)">
+        {{ save.character }}
+      </li>
+    </ul>
 
-  <router-link to="/menu">Cancel</router-link>
+    <router-link to="/menu">Cancel</router-link>
+  </div>
 </template>
 
 <script>

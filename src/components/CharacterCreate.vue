@@ -1,11 +1,13 @@
 <template>
-  <h1>Create Character</h1>
+  <div class="">
+    <h1>Create Character</h1>
 
-  <input v-model="character.name" type="text" placeholder="Name" />
-  <span class="error" v-if="(character.name.length <= 0) && submitted">Your character needs a name!</span>
+    <input v-model="character.name" type="text" placeholder="Name" />
+    <span class="error" v-if="(character.name.length <= 0) && submitted">Your character needs a name!</span>
 
-  <a @click="create">Create</a>
-  <router-link to="/menu">Cancel</router-link>
+    <a @click="create">Create</a>
+    <router-link to="/menu">Cancel</router-link>
+  </div>
 </template>
 
 <script>

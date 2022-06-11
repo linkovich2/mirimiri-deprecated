@@ -10,6 +10,8 @@ import CharacterSelect from './components/CharacterSelect.vue'
 import CharacterCreate from './components/CharacterCreate.vue'
 import Game from './engine/game.js'
 
+import "@/assets/global.css"
+
 const routes = [
   { path: '/menu', component: MainMenu, meta: { transition: 'fade' } },
   { path: '/splash', component: SplashScreen, meta: { transition: 'fade' } },

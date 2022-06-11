@@ -1,16 +1,22 @@
 <template>
-  <div class="">
-    <h1>Main Menu</h1>
-
-    <ul>
-      <li><router-link to="/create">New</router-link></li>
-      <li v-if="showLoad"><router-link to="/load">Load</router-link></li>
-      <li @click="showOptions = true">Options</li>
-      <li @click="exit">Exit</li>
+  <div id="container">
+    <div id="content">
+      <h1>MiriMiri</h1>
       <br />
-      <li v-if="devMode"><router-link to="/splash">Test Splash</router-link></li>
-    </ul>
+      <ul>
+        <li><router-link to="/create">New</router-link></li>
+        <li v-if="showLoad"><router-link to="/load">Load</router-link></li>
+        <li @click="showOptions = true">Options</li>
+        <li @click="exit">Exit</li>
+      </ul>
+    </div>
 
+    <div id="dev-tools" v-if="devMode">
+      <ul>
+        <li>Dev Tools</li>
+        <li><router-link to="/splash">Test Splash</router-link></li>
+      </ul>
+    </div>
     <OptionsModal v-if="showOptions" @close="showOptions = false" />
   </div>
 </template>
@@ -50,3 +56,58 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  #container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  #dev-tools {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  #dev-tools li:first-of-type {
+    text-decoration: underline;
+    font-variant: small-caps;
+  }
+
+  #content ul li {
+    border: 1px solid rgba(0,0,0,0.1);
+    margin: 10px;
+    text-transform: uppercase;
+    background-color: #444;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+
+  #content ul li a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  #content ul li:hover {
+    background-color: #666;
+    cursor: pointer;
+  }
+</style>

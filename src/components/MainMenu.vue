@@ -1,9 +1,34 @@
 <template>
   <h1>Main Menu</h1>
+
+  <ul>
+    <li>New Game</li>
+    <li>Load</li>
+    <li @click="showOptions = true">Options</li>
+    <li @click="exit">Exit</li>
+  </ul>
+
+  <OptionsModal v-if="showOptions" @close="showOptions = false" />
 </template>
 
 <script>
+const { ipcRenderer } = require('electron')
+import OptionsModal from './OptionsModal.vue'
+
 export default {
-  name: 'MainMenu'
+  name: 'MainMenu',
+  data() {
+    return {
+      showOptions: false
+    }
+  },
+  components: {
+    OptionsModal
+  },
+  methods: {
+    exit() {
+      ipcRenderer.invoke('quit')
+    }
+  }
 }
 </script>

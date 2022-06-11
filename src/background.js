@@ -115,8 +115,20 @@ ipcMain.handle('get-settings', async (event, data) => {
 })
 
 ipcMain.handle('update-settings', async (event, data) => {
-  console.log(data)
+  let win = BrowserWindow.getFocusedWindow()
+  // respond to the fullscreen change here, because might as well
+  if (data.fullscreen && !settings.fullscreen) {
+    win.setFullScreen(true)
+  } else if (!data.fullscreen && settings.fullscreen) {
+    win.setFullScreen(false)
+  }
+
   settings.fullscreen  = data.fullscreen
   settings.skip_splash = data.skip_splash
   settings.save()
+})
+
+ipcMain.handle('quit', async (event, data) => {
+  let win = BrowserWindow.getFocusedWindow()
+  win.close()
 })

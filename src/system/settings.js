@@ -22,11 +22,12 @@ exports.Settings = class {
   load() {
     try {
       let data = JSON.parse(fs.readFileSync(settingsFilePath))
-      this.height     = data.height
-      this.width      = data.width
-      this.position   = data.position
-      this.fullscreen = data.fullscreen
-      this.maximized  = data.maximized
+      this.height      = data.height
+      this.width       = data.width
+      this.position    = data.position
+      this.fullscreen  = data.fullscreen
+      this.maximized   = data.maximized
+      this.skip_splash = data.skip_splash
     } catch (err) {
       if (err.code === 'ENOENT') {
         console.info('Settings file not found; creating one.')

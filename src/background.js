@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -107,3 +107,15 @@ if (isDevelopment) {
     })
   }
 }
+
+// API Methods to handle saving and loading
+ipcMain.handle('get-settings', async (event, data) => {
+  return settings
+})
+
+ipcMain.handle('update-settings', async (event, data) => {
+  console.log(data)
+  settings.fullscreen  = data.fullscreen
+  settings.skip_splash = data.skip_splash
+  settings.save()
+})

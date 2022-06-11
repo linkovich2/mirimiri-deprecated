@@ -2,8 +2,8 @@
   <h1>Main Menu</h1>
 
   <ul>
-    <li>New Game</li>
-    <li>Load</li>
+    <li><router-link to="/create">New</router-link></li>
+    <li><router-link to="/load">Load</router-link></li>
     <li @click="showOptions = true">Options</li>
     <li @click="exit">Exit</li>
   </ul>

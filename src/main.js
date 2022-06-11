@@ -4,10 +4,18 @@ import { createApp } from 'vue/dist/vue.esm-bundler'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import SplashScreen from './components/SplashScreen.vue'
 import MainMenu from './components/MainMenu.vue'
+import TravelScreen from './components/TravelScreen.vue'
+import PlayScreen from './components/PlayScreen.vue'
+import CharacterSelect from './components/CharacterSelect.vue'
+import CharacterCreate from './components/CharacterCreate.vue'
 
 const routes = [
   { path: '/menu', component: MainMenu, meta: { transition: 'fade' } },
-  { path: '/splash', component: SplashScreen, meta: { transition: 'fade' } }
+  { path: '/splash', component: SplashScreen, meta: { transition: 'fade' } },
+  { path: '/load', component: CharacterSelect },
+  { path: '/travel', component: TravelScreen },
+  { path: '/play', component: PlayScreen },
+  { path: '/create', component: CharacterCreate }
 ]
 
 const router = createRouter({

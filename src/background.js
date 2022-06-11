@@ -17,6 +17,7 @@ async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     autoHideMenuBar: true,
+    backgroundColor: '#f9f9f9',
     minWidth: 800,
     minHeight: 600,
     title: 'MiriMiri',

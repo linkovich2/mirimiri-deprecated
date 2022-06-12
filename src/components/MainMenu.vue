@@ -91,7 +91,6 @@ export default {
 
   ul {
     list-style-type: none;
-    padding: 0;
   }
 
   #dev-tools li:first-of-type {

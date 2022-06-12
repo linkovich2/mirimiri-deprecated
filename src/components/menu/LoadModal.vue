@@ -6,12 +6,17 @@
           <h1>Load Game</h1>
 
           <ul>
-            <li v-for="(save) in saves" :key="save.id" @click="load(save.id)">
+            <li :class="{ selected: selected == save.id }" v-for="(save) in saves" :key="save.id" @click="selected = save.id">
+              &#9863;
+              <br />
               {{ save.character }}
             </li>
           </ul>
 
-          <button class="modal-default-button" @click="$emit('close')">OK</button>
+          <div class="button-container">
+            <button @click="load(selected)">Load</button>
+            <button @click="$emit('close')">Cancel</button>
+          </div>
         </div>
       </div>
     </div>
@@ -22,6 +27,11 @@
 export default {
   name: 'LoadModal',
   inject: ['game', 'saves'],
+  data() {
+    return {
+      selected: ''
+    }
+  },
   methods: {
     load(id) {
       this.game.load(id, () => {
@@ -33,4 +43,31 @@ export default {
 </script>
 
 <style scoped>
+  ul {
+    margin-top: 20px;
+    list-style-type: none;
+    columns: 3;
+  }
+
+  li {
+    text-align: center;
+    margin: 5px;
+    border: 1px solid rgba(0,0,0,0);
+    cursor: pointer;
+  }
+
+  .selected {
+    border: 1px solid blue;
+  }
+
+  button {
+    margin: 10px;
+  }
+
+  .button-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
 </style>

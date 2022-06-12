@@ -33,6 +33,10 @@ button {
   cursor: pointer;
 }
 
+ul {
+  padding: 0;
+}
+
 .modal-mask {
   position: fixed;
   z-index: 9998;

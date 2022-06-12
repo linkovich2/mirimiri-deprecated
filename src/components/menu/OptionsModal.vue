@@ -4,9 +4,13 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <h1>Options</h1>
-          <label>Fullscreen</label>
-          <input type="checkbox" v-model="settings.fullscreen" :checked="fullscreen">
-          <button class="modal-default-button" @click="$emit('close')">OK</button>
+          <div class="fields">
+            <span class="field">
+              <label>Fullscreen</label>
+              <input type="checkbox" v-model="settings.fullscreen" :checked="fullscreen">
+            </span>
+          </div>
+          <button class="ok-button" @click="$emit('close')">OK</button>
         </div>
       </div>
     </div>
@@ -44,3 +48,36 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .ok-button {
+    margin: 20px auto;
+    display: block;
+  }
+
+  .fields {
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background-color: #ddd;
+  }
+
+  .field {
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .field label {
+    font-size: 0.8rem;
+    float: left;
+  }
+
+  .field input {
+    float: left;
+    margin-left: 10px;
+  }
+
+  .field input[type=checkbox] {
+    margin-top: 4px;
+  }
+</style>

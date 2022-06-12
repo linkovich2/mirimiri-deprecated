@@ -6,7 +6,6 @@ import SplashScreen from './components/SplashScreen.vue'
 import MainMenu from './components/MainMenu.vue'
 import TravelScreen from './components/TravelScreen.vue'
 import PlayScreen from './components/PlayScreen.vue'
-import CharacterSelect from './components/CharacterSelect.vue'
 import CharacterCreate from './components/CharacterCreate.vue'
 import Game from './engine/game.js'
 
@@ -15,7 +14,6 @@ import "@/assets/global.css"
 const routes = [
   { path: '/menu', component: MainMenu, meta: { transition: 'fade' } },
   { path: '/splash', component: SplashScreen, meta: { transition: 'fade' } },
-  { path: '/load', component: CharacterSelect },
   { path: '/travel', component: TravelScreen },
   { path: '/play', component: PlayScreen },
   { path: '/create', component: CharacterCreate }
@@ -29,6 +27,7 @@ const router = createRouter({
 const game = new Game()
 
 const app = createApp({})
+app.config.unwrapInjectedRef = true
 app.use(router)
 app.provide('game', game)
 app.mount('#app')

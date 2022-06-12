@@ -4,8 +4,8 @@
       <h1>MiriMiri</h1>
       <br />
       <ul>
-        <li><router-link to="/create">New</router-link></li>
-        <li v-if="showLoad"><router-link to="/load">Load</router-link></li>
+        <li @click="this.$router.push('/create')">New</li>
+        <li v-if="saves.length > 0" @click="showLoad = true">Load</li>
         <li @click="showOptions = true">Options</li>
         <li @click="exit">Exit</li>
       </ul>
@@ -18,12 +18,15 @@
       </ul>
     </div>
     <OptionsModal v-if="showOptions" @close="showOptions = false" />
+    <LoadModal v-if="saves.length > 0 && showLoad" @close="showLoad = false" />
   </div>
 </template>
 
 <script>
 const { ipcRenderer } = require('electron')
-import OptionsModal from './OptionsModal.vue'
+import { computed } from 'vue'
+import OptionsModal from './menu/OptionsModal.vue'
+import LoadModal from './menu/LoadModal.vue'
 
 export default {
   name: 'MainMenu',
@@ -32,14 +35,18 @@ export default {
     return {
       showOptions: false,
       showLoad: false,
-      devMode: false
+      devMode: false,
+      saves: []
+    }
+  },
+  provide() {
+    return {
+      saves: computed(() => this.saves)
     }
   },
   beforeMount() {
     this.game.saves((saves) => {
-      if (saves.length > 0) {
-        this.showLoad = true
-      }
+      this.saves = saves
     })
 
     ipcRenderer.invoke('dev-mode?').then((result) => {
@@ -47,7 +54,8 @@ export default {
     })
   },
   components: {
-    OptionsModal
+    OptionsModal,
+    LoadModal
   },
   methods: {
     exit() {

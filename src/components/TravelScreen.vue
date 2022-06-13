@@ -1,8 +1,8 @@
 <template>
   <div id="container">
-    <h1>Travel</h1>
+    <h1>Travel Screen / World Map</h1>
 
-    <router-link to="/play">Local Map</router-link>
+    <div class="map-controls"><router-link to="/play">Back</router-link></div>
   </div>
 </template>
 
@@ -13,4 +13,10 @@ export default {
 </script>
 
 <style scoped>
+  .map-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 20px;
+  }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="container">
+    <div class="debug-menu">Debug: <router-link to="/travel">Travel</router-link></div>
     <p>Playing as: {{ game.character.name }}</p>
-    <p>@todo: add a travel map link</p>
     <div class="settings-cog" @contextmenu="settingsContext($event)" @click="settingsContext($event)">&#9881;</div>
   </div>
 </template>
@@ -56,5 +56,12 @@ export default {
     bottom: 0;
     margin: 20px;
     right: 0;
+  }
+
+  .debug-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
   }
 </style>

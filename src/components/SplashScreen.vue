@@ -1,6 +1,6 @@
 <template>
   <div id="splash-container">
-    <h1>Studio Name ???</h1>
+    <h1>LightlyChard Games</h1>
     <p>ESC to Skip</p>
   </div>
 </template>

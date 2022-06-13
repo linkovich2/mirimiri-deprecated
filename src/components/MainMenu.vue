@@ -6,7 +6,7 @@
       <ul>
         <li @click="this.$router.push('/create')">New</li>
         <li v-if="saves.length > 0" @click="showLoad = true">Load</li>
-        <li @click="showOptions = true">Options</li>
+        <li @click="showOptions = true">Settings</li>
         <li @click="exit">Exit</li>
       </ul>
     </div>
@@ -66,17 +66,6 @@ export default {
 </script>
 
 <style scoped>
-  #container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-  }
-
   #dev-tools {
     position: absolute;
     bottom: 0;

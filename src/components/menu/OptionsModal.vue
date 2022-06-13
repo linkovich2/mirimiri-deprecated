@@ -3,7 +3,7 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <h1>Options</h1>
+          <h1>Settings</h1>
           <div class="fields">
             <span class="field">
               <label>Fullscreen</label>

@@ -2,6 +2,8 @@ const { ipcRenderer } = require('electron')
 
 import { createApp } from 'vue/dist/vue.esm-bundler'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import ContextMenu from '@imengyu/vue3-context-menu'
+
 import SplashScreen from './components/SplashScreen.vue'
 import MainMenu from './components/MainMenu.vue'
 import TravelScreen from './components/TravelScreen.vue'
@@ -9,6 +11,7 @@ import PlayScreen from './components/PlayScreen.vue'
 import CharacterCreate from './components/CharacterCreate.vue'
 import Game from './engine/game.js'
 
+import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import "@/assets/global.css"
 
 const routes = [
@@ -16,7 +19,8 @@ const routes = [
   { path: '/splash', component: SplashScreen, meta: { transition: 'fade' } },
   { path: '/travel', component: TravelScreen },
   { path: '/play', component: PlayScreen },
-  { path: '/create', component: CharacterCreate }
+  { path: '/create', component: CharacterCreate },
+  { path: '/:pathMatch(.*)', redirect: '/menu' }
 ]
 
 const router = createRouter({
@@ -29,6 +33,7 @@ const game = new Game()
 const app = createApp({})
 app.config.unwrapInjectedRef = true
 app.use(router)
+app.use(ContextMenu)
 app.provide('game', game)
 app.mount('#app')
 

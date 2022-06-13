@@ -1,6 +1,6 @@
 <template>
-  <div class="">
-    <h1>Travel Map</h1>
+  <div id="container">
+    <h1>Travel</h1>
 
     <router-link to="/play">Local Map</router-link>
   </div>

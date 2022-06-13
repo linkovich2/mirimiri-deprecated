@@ -15,6 +15,7 @@
       <ul>
         <li>Dev Tools</li>
         <li><router-link to="/splash">Test Splash</router-link></li>
+        <li><router-link to="/dev/locale-editor">Locale Editor</router-link></li>
       </ul>
     </div>
     <OptionsModal v-if="showOptions" @close="showOptions = false" />
@@ -30,12 +31,11 @@ import LoadModal from './menu/LoadModal.vue'
 
 export default {
   name: 'MainMenu',
-  inject: ['game'],
+  inject: ['game', 'devMode'],
   data() {
     return {
       showOptions: false,
       showLoad: false,
-      devMode: false,
       saves: []
     }
   },
@@ -47,10 +47,6 @@ export default {
   beforeMount() {
     this.game.saves((saves) => {
       this.saves = saves
-    })
-
-    ipcRenderer.invoke('dev-mode?').then((result) => {
-      this.devMode = result
     })
   },
   components: {

@@ -7,8 +7,20 @@
 </template>
 
 <script>
+const { ipcRenderer } = require('electron')
+
 export default {
-  name: 'LocaleEditor'
+  name: 'LocaleEditor',
+  data() {
+    return {
+      locales: []
+    }
+  },
+  beforeMount() {
+    ipcRenderer.invoke('dev-list-content-files', {dirPath: '/locales/'}).then((result) => {
+      this.locales = result
+    })
+  }
 }
 </script>
 

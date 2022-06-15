@@ -13,11 +13,14 @@ export default {
   name: 'LocaleEditor',
   data() {
     return {
-      locales: []
+      locales: [],
+      resource: 'locales'
     }
   },
   beforeMount() {
-    ipcRenderer.invoke('dev-list-content-files', {dirPath: '/locales/'}).then((result) => {
+    ipcRenderer.invoke('dev-list-content-files', {
+      dirPath: `/${this.resource}/`
+    }).then((result) => {
       this.locales = result
     })
   }

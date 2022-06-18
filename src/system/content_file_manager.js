@@ -25,6 +25,10 @@ exports.ContentFileManager = class {
     return fs.writeFileSync(this.getPath(filePath + '.json', devMode), content)
   }
 
+  delete(filePath, devMode = false) {
+    return fs.unlinkSync(this.getPath(filePath + '.json', devMode))
+  }
+
   registerHandlers() {
     ipcMain.handle('dev-save-content-file', async (event, data) => {
       return this.save(data.filePath, data.content, true)
@@ -36,6 +40,10 @@ exports.ContentFileManager = class {
 
     ipcMain.handle('dev-list-content-files', async (event, data) => {
       return this.list(data.dirPath, true)
+    })
+
+    ipcMain.handle('dev-delete-content-file', async (event, data) => {
+      return this.delete(data.filePath, true)
     })
 
     ipcMain.handle('load-content-file', async (event, data) => {

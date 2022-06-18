@@ -5,6 +5,7 @@
     <ul>
       <li v-for="location in locations" :key="location">
         {{ location.replace('.json', '') }}
+        <span class="delete" @click="deleteLocation(location)">x</span>
       </li>
     </ul>
 
@@ -56,6 +57,12 @@ export default {
         this.locations.push(this.newLocation.id)
         this.newLocation = { id: "", name: "" }
       })
+    },
+    deleteLocation(location) {
+      let filePath = `${this.resource}/${location.replace('.json', '')}`
+      ipcRenderer.invoke('dev-delete-content-file', { filePath: filePath }).then(() => {
+        this.locations.splice(this.locations.indexOf(location), 1)
+      })
     }
   }
 }
@@ -89,5 +96,10 @@ export default {
     position: absolute;
     right: 0;
     margin: 20px;
+  }
+
+  .delete {
+    color: red;
+    cursor: pointer;
   }
 </style>

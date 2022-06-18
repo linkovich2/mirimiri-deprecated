@@ -23,20 +23,27 @@ export default {
     this.pixiApp = new PIXI.Application()
 
     const viewport = new Viewport({
-        passiveWheel: false,
-        worldWidth: 1000,
-        worldHeight: 1000,
+      passiveWheel: false,
+      worldWidth: 1000,
+      worldHeight: 1000,
 
-        interaction: this.pixiApp.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
+      interaction: this.pixiApp.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
     })
 
     this.pixiApp.renderer.backgroundColor = 0xFEFEFE
     this.pixiApp.stage.addChild(viewport)
     viewport
-        .drag()
+        .drag({
+          mouseButtons: 'middle'
+        })
         .pinch()
         .wheel()
         .decelerate()
+        .mouseEdges({
+          distance: 100,
+          bottom: 200,
+          speed: 10
+        })
 
     this.canvas = document.body.appendChild(this.pixiApp.view)
 
@@ -45,6 +52,17 @@ export default {
     sprite.tint = 0xff0000
     sprite.width = sprite.height = 100
     sprite.position.set(100, 100)
+
+    viewport.fit()
+    viewport.moveCenter(500, 500)
+
+    this.pixiApp.renderer.resize(window.innerWidth, window.innerHeight)
+    viewport.resize(window.innerWidth, window.innerHeight)
+
+    window.onresize = () => {
+      this.pixiApp.renderer.resize(window.innerWidth, window.innerHeight)
+      viewport.resize(window.innerWidth, window.innerHeight)
+    }
   },
   unmounted() {
     this.pixiApp.stage.destroy(true)
@@ -61,6 +79,7 @@ export default {
       this.$contextmenu({
         x: e.x,
         y: e.y,
+        zIndex: 2,
         items: [
           {
             label: "Settings",

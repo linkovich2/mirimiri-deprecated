@@ -44,8 +44,11 @@ export default {
   methods: {
     createLocation(e) {
       e.preventDefault()
-      // this needs validation to ensure that the unique ID is unique (IE, not in this.locations)
-      // and that the id does not contain spaces
+
+      if (/\s/g.test(this.newLocation.id) || this.locations.includes(this.newLocation.id + '.json') || this.newLocation.name.length <= 0) {
+        return; // @todo separate this out with appropriate error messages
+      }
+
       ipcRenderer.invoke('dev-save-content-file', {
         filePath: `${this.resource}/${this.newLocation.id}`,
         content: JSON.stringify(this.newLocation)

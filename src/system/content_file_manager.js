@@ -22,7 +22,7 @@ exports.ContentFileManager = class {
   }
 
   save(filePath, content, devMode = false) {
-    return fs.writeFileSync(this.getPath(filePath, devMode), content)
+    return fs.writeFileSync(this.getPath(filePath + '.json', devMode), content)
   }
 
   registerHandlers() {

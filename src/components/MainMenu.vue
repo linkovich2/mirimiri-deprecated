@@ -15,7 +15,7 @@
       <ul>
         <li>Dev Tools</li>
         <li><router-link to="/splash">Test Splash</router-link></li>
-        <li><router-link to="/dev/locale-editor">Locale Editor</router-link></li>
+        <li><router-link to="/dev/locations">Locations</router-link></li>
       </ul>
     </div>
     <OptionsModal v-if="showOptions" @close="showOptions = false" />

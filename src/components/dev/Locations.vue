@@ -31,7 +31,6 @@ export default {
     return {
       locations: [],
       resource: 'locations',
-      page: 1,
       newLocation: {
         name: "",
         id: ""

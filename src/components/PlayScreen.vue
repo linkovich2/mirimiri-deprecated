@@ -7,7 +7,7 @@
 
 <script>
 import * as PIXI from 'pixi.js'
-import { Viewport  } from 'pixi-viewport'
+import { Viewport, MouseEdges } from 'pixi-viewport'
 const { ipcRenderer } = require('electron')
 
 export default {
@@ -20,12 +20,28 @@ export default {
     }
   },
   beforeMount() {
+    // this is applying a PR that hasn't been merged yet to fix edge scrolling, found here: https://github.com/davidfig/pixi-viewport/pull/373/
+    MouseEdges.prototype.resize = function() {
+      const distance = this.options.distance;
+        if (distance !== null) {
+          this.left = distance;
+          this.top = distance;
+          this.right = this.parent.screenWidth - distance;
+          this.bottom = this.parent.screenHeight - distance;
+        } else if (!this.options.radius) {
+          this.left = this.options.left;
+          this.top = this.options.top;
+          this.right = this.options.right === null ? null : this.parent.screenWidth - this.options.right;
+          this.bottom = this.options.bottom === null ? null : this.parent.screenHeight - this.options.bottom;
+        }
+    }
+
     this.pixiApp = new PIXI.Application()
 
     const viewport = new Viewport({
       passiveWheel: false,
-      worldWidth: 1000,
-      worldHeight: 1000,
+      worldWidth: 1000, // arbitrary for now
+      worldHeight: 1000, // arbitrary for now
 
       interaction: this.pixiApp.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
     })
@@ -41,8 +57,7 @@ export default {
         .decelerate()
         .mouseEdges({
           distance: 100,
-          bottom: 200,
-          speed: 10
+          speed: 9
         })
 
     this.canvas = document.body.appendChild(this.pixiApp.view)
@@ -84,7 +99,7 @@ export default {
           {
             label: "Settings",
             onClick: () => {
-              // open the options modal and close
+              // open the options modal
             }
           },
           {

@@ -59,6 +59,9 @@ export default {
           distance: 100,
           speed: 9
         })
+        .clamp({
+          direction: 'all'
+        })
         .clampZoom({
           minScale: 2,
           maxScale: 6

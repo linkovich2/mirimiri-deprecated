@@ -12,6 +12,7 @@ import CharacterCreate from './components/CharacterCreate.vue'
 import Locations from './components/dev/Locations.vue'
 
 import Game from './engine/game.js'
+import Renderer from './engine/renderer.js'
 
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import "@/assets/global.css"
@@ -40,6 +41,7 @@ ipcRenderer.invoke('dev-mode?').then((devMode) => {
   })
 
   const game = new Game()
+  const renderer = new Renderer()
 
   const app = createApp({})
 
@@ -47,6 +49,7 @@ ipcRenderer.invoke('dev-mode?').then((devMode) => {
   app.use(router)
   app.use(ContextMenu)
   app.provide('game', game)
+  app.provide('renderer', renderer)
   app.provide('devMode', devMode)
   app.mount('#app')
 

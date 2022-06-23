@@ -20,6 +20,7 @@ export default {
     }
   },
   beforeMount() {
+    PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST
     // this is applying a PR that hasn't been merged yet to fix edge scrolling, found here: https://github.com/davidfig/pixi-viewport/pull/373/
     MouseEdges.prototype.resize = function() {
       const distance = this.options.distance;
@@ -40,9 +41,8 @@ export default {
 
     const viewport = new Viewport({
       passiveWheel: false,
-      worldWidth: 1000, // arbitrary for now
-      worldHeight: 1000, // arbitrary for now
-
+      worldWidth: 1000,
+      worldHeight: 1000,
       interaction: this.pixiApp.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
     })
 
@@ -59,17 +59,25 @@ export default {
           distance: 100,
           speed: 9
         })
+        .clampZoom({
+          minScale: 2,
+          maxScale: 6
+        })
 
     this.canvas = document.body.appendChild(this.pixiApp.view)
 
-    const sprite = viewport.addChild(new PIXI.Sprite(PIXI.Texture.WHITE))
+    const texture = PIXI.Texture.from(require('@/assets/temp_background.png'))
+    const sprite = new PIXI.Sprite(texture)
+    // sprite.tint = 0xff0000
+    sprite.width = viewport.worldWidth
+    sprite.height = viewport.worldHeight
+    sprite.anchor.set(0, 0)
 
-    sprite.tint = 0xff0000
-    sprite.width = sprite.height = 100
-    sprite.position.set(100, 100)
+    viewport.addChild(sprite)
 
     viewport.fit()
-    viewport.moveCenter(500, 500)
+    viewport.moveCenter(viewport.worldWidth / 2, viewport.worldHeight / 2)
+    viewport.setZoom(3, true)
 
     this.pixiApp.renderer.resize(window.innerWidth, window.innerHeight)
     viewport.resize(window.innerWidth, window.innerHeight)

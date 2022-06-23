@@ -70,15 +70,16 @@ export default class Renderer {
     this.viewport.resize(window.innerWidth, window.innerHeight)
 
     window.onresize = () => {
+      // this needs to be some global thing in case we need to add to it
       this.pixiApp.renderer.resize(window.innerWidth, window.innerHeight)
       this.viewport.resize(window.innerWidth, window.innerHeight)
     }
   }
 
   destroy() {
-    this.pixiApp.stage.destroy(true)
-    this.pixiApp.stage = null
-    this.pixiApp = null
+    this.pixiApp.renderer.destroy()
     this.canvas.remove()
+
+    window.onresize = null;
   }
 }

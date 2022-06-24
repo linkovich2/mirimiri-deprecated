@@ -2,17 +2,16 @@
   <div id="container">
     <div id="dark-overlay"></div>
     <div class="stars-overlay"></div>
+    <div class="bg-overlay"></div>
     <div id="content">
-      <div id="floating-overlay">
-        <h1>MiriMiri</h1>
-        <br />
-        <ul>
-          <li @click="this.$router.push('/create')">New</li>
-          <li v-if="saves.length > 0" @click="showLoad = true">Load</li>
-          <li @click="showOptions = true">Settings</li>
-          <li @click="exit">Exit</li>
-        </ul>
-      </div>
+      <h1>MiriMiri</h1>
+      <br />
+      <ul>
+        <li @click="this.$router.push('/create')">New</li>
+        <li v-if="saves.length > 0" @click="showLoad = true">Load</li>
+        <li @click="showOptions = true">Settings</li>
+        <li @click="exit">Exit</li>
+      </ul>
     </div>
 
     <div id="dev-tools" v-if="devMode">
@@ -85,13 +84,12 @@ export default {
   }
 
   .stars-overlay {
-    background: repeat 90% url('./../assets/menu/stars.png');
+    background: repeat 80% 80% url('./../assets/menu/stars.png');
     height: 100%;
     width: 6000px;
     position: absolute;
     top: 0;
     animation: slide 60s linear infinite;
-    pointer-events: none;
   }
 
   @keyframes slide {
@@ -101,10 +99,6 @@ export default {
     100% {
       transform: translate3d(-2000px, 0, 0);
     }
-  }
-
-  #floating-overlay {
-    z-index: 5;
   }
 
   #container {
@@ -127,11 +121,20 @@ export default {
     color: white;
   }
 
-  #content {
+  .bg-overlay {
     width: 100%;
     background: repeat-x center url("./../assets/menu/gradient.png");
     height: 35%;
     max-height: 260px;
+  }
+
+  #content {
+    height: 33%;
+    min-height: 250px;
+    position: absolute;
+    top: 33%;
+    width: 100%;
+    margin: 0 auto;
   }
 
   #content ul li {

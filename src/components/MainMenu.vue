@@ -3,6 +3,14 @@
     <div id="dark-overlay"></div>
     <div class="stars-overlay"></div>
     <div class="bg-overlay"></div>
+    <!-- <div class="planet-container tr">
+      <div class="shadeland planet"></div>
+    </div>
+    <div class="planet-container br">
+      <div class="vera planet"></div>
+    </div> -->
+    <div class="grass-overlay"></div>
+    <div class="statue-overlay"></div>
     <div id="content">
       <h1>MiriMiri</h1>
       <br />
@@ -83,13 +91,84 @@ export default {
     height: 38%;
   }
 
+  .planet-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 33%;
+    width: 33%;
+  }
+
+  .planet-container.tr {
+    top:0;
+    right:0;
+  }
+
+  .planet-container.br {
+    bottom:0;
+    right:0;
+  }
+
+  .planet-container.bl {
+    bottom: 0;
+    left: 0;
+  }
+
+  .planet-container.tl {
+    top: 0;
+    left: 0;
+  }
+
+  /* .shadeland {
+    background: url('./../assets/menu/shadeland.png') 0 0;
+  }
+
+  .vera {
+    background: url('./../assets/menu/vera.png') 0 0;
+  } */
+
+  .planet {
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    animation-name: planet;
+    animation-duration: 8s;
+    animation-timing-function: steps(50);
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes planet {
+    from { background-position: 0px; }
+    to { background-position: -5000px; }
+  }
+
   .stars-overlay {
-    background: repeat 80% 80% url('./../assets/menu/stars.png');
+    background: repeat url('./../assets/menu/stars.png');
     height: 100%;
     width: 6000px;
     position: absolute;
     top: 0;
-    animation: slide 60s linear infinite;
+    animation: slide 240s linear infinite;
+  }
+
+  .grass-overlay {
+    background: repeat bottom url('./../assets/menu/grass.png');
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-size: 6000px;
+  }
+
+  .statue-overlay {
+    background: no-repeat center center url('./../assets/menu/sadstatue.png');
+    height: 50%;
+    width: 33%;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
   }
 
   @keyframes slide {

@@ -1,14 +1,18 @@
 <template>
   <div id="container">
+    <div id="dark-overlay"></div>
+    <div class="stars-overlay"></div>
     <div id="content">
-      <h1>MiriMiri</h1>
-      <br />
-      <ul>
-        <li @click="this.$router.push('/create')">New</li>
-        <li v-if="saves.length > 0" @click="showLoad = true">Load</li>
-        <li @click="showOptions = true">Settings</li>
-        <li @click="exit">Exit</li>
-      </ul>
+      <div id="floating-overlay">
+        <h1>MiriMiri</h1>
+        <br />
+        <ul>
+          <li @click="this.$router.push('/create')">New</li>
+          <li v-if="saves.length > 0" @click="showLoad = true">Load</li>
+          <li @click="showOptions = true">Settings</li>
+          <li @click="exit">Exit</li>
+        </ul>
+      </div>
     </div>
 
     <div id="dev-tools" v-if="devMode">
@@ -62,6 +66,11 @@ export default {
 </script>
 
 <style scoped>
+  #container {
+    display: block;
+    background-color: #303940;
+  }
+
   #dev-tools {
     position: absolute;
     bottom: 0;
@@ -69,9 +78,43 @@ export default {
     padding: 20px;
   }
 
+  #dark-overlay {
+    background-color: #202231;
+    width: 100%;
+    height: 38%;
+  }
+
+  .stars-overlay {
+    background: repeat 90% url('./../assets/menu/stars.png');
+    height: 100%;
+    width: 6000px;
+    position: absolute;
+    top: 0;
+    animation: slide 60s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-2000px, 0, 0);
+    }
+  }
+
+  #floating-overlay {
+    z-index: 5;
+  }
+
+  #container {
+    background-color: #303940;
+  }
+
   h1 {
     text-align: center;
     font-size: 3rem;
+    color: #fefefe;
   }
 
   ul {
@@ -81,11 +124,20 @@ export default {
   #dev-tools li:first-of-type {
     text-decoration: underline;
     font-variant: small-caps;
+    color: white;
+  }
+
+  #content {
+    width: 100%;
+    background: repeat-x center url("./../assets/menu/gradient.png");
+    height: 35%;
+    max-height: 260px;
   }
 
   #content ul li {
+    width: 200px;
     border: 1px solid rgba(0,0,0,0.1);
-    margin: 10px;
+    margin: 10px auto;
     text-transform: uppercase;
     background-color: #444;
     color: #fff;
@@ -101,5 +153,9 @@ export default {
   #content ul li:hover {
     background-color: #666;
     cursor: pointer;
+  }
+
+  a, a {
+    color: #f3f4f5;
   }
 </style>

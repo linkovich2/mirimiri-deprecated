@@ -202,7 +202,7 @@ export default {
     height: 50%;
     width: 100%;
     margin-left: 5%;
-    background-size: 300px;
+    background-size: 350px;
   }
 
   @keyframes slide {

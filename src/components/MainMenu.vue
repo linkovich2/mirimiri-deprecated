@@ -10,7 +10,10 @@
       <div class="vera planet"></div>
     </div> -->
     <div class="grass-overlay"></div>
+    <div class="clouds left"></div>
+    <div class="clouds right"></div>
     <div class="statue-overlay"></div>
+    <div class="cross-grave"></div>
     <div id="content">
       <h1>MiriMiri</h1>
       <br />
@@ -159,16 +162,47 @@ export default {
     width: 100%;
     position: absolute;
     top: 0;
-    background-size: 6000px;
+    background-size: 3000px;
   }
 
   .statue-overlay {
-    background: no-repeat center center url('./../assets/menu/sadstatue.png');
-    height: 50%;
+    background: no-repeat center bottom url('./../assets/menu/sadstatue.png');
+    height: 100%;
     width: 33%;
     position: absolute;
-    bottom: 10px;
+    right: 0;
+    bottom: 0;
+    background-size: 280px 448px;
+  }
+
+  .clouds {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  .clouds.left {
+    background: no-repeat url('./../assets/menu/clouds_left.png');
     left: 0;
+    background-size: 500px;
+  }
+
+  .clouds.right {
+    background: no-repeat top right url('./../assets/menu/clouds_right.png');
+    top: 20px;
+    background-size: 500px;
+  }
+
+  .cross-grave {
+    bottom: -10px;
+    left: 0;
+    background: no-repeat bottom left url('./../assets/menu/cross_grave.png');
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    margin-left: 5%;
+    background-size: 300px;
   }
 
   @keyframes slide {

@@ -161,7 +161,7 @@ export default {
     height: 100%;
     width: 100%;
     position: absolute;
-    top: 0;
+    top: 150px;
     background-size: 3000px;
   }
 
@@ -199,7 +199,7 @@ export default {
     left: 0;
     background: no-repeat bottom left url('./../assets/menu/cross_grave.png');
     position: absolute;
-    height: 50%;
+    height: 100%;
     width: 100%;
     margin-left: 5%;
     background-size: 350px;

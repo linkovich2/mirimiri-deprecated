@@ -13,10 +13,8 @@
     <div class="clouds left"></div>
     <div class="clouds right"></div>
     <div class="statue-overlay"></div>
-    <div class="cross-grave"></div>
     <div id="content">
-      <h1>MiriMiri</h1>
-      <br />
+      <img class="logo" src="@/assets/menu/logo.png" />
       <ul>
         <li @click="this.$router.push('/create')">New</li>
         <li v-if="saves.length > 0" @click="showLoad = true">Load</li>
@@ -94,59 +92,6 @@ export default {
     height: 38%;
   }
 
-  .planet-container {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 33%;
-    width: 33%;
-  }
-
-  .planet-container.tr {
-    top:0;
-    right:0;
-  }
-
-  .planet-container.br {
-    bottom:0;
-    right:0;
-  }
-
-  .planet-container.bl {
-    bottom: 0;
-    left: 0;
-  }
-
-  .planet-container.tl {
-    top: 0;
-    left: 0;
-  }
-
-  /* .shadeland {
-    background: url('./../assets/menu/shadeland.png') 0 0;
-  }
-
-  .vera {
-    background: url('./../assets/menu/vera.png') 0 0;
-  } */
-
-  .planet {
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100px;
-    height: 100px;
-    animation-name: planet;
-    animation-duration: 8s;
-    animation-timing-function: steps(50);
-    animation-iteration-count: infinite;
-  }
-
-  @keyframes planet {
-    from { background-position: 0px; }
-    to { background-position: -5000px; }
-  }
-
   .stars-overlay {
     background: repeat url('./../assets/menu/stars.png');
     height: 100%;
@@ -166,13 +111,13 @@ export default {
   }
 
   .statue-overlay {
-    background: no-repeat center bottom url('./../assets/menu/sadstatue.png');
+    background: no-repeat center bottom url('./../assets/menu/statue.png');
     height: 100%;
     width: 33%;
     position: absolute;
-    right: 0;
+    left: 0;
     bottom: 0;
-    background-size: 280px 448px;
+    background-size: 375px 600px;
   }
 
   .clouds {
@@ -194,17 +139,6 @@ export default {
     background-size: 500px;
   }
 
-  .cross-grave {
-    bottom: -10px;
-    left: 0;
-    background: no-repeat bottom left url('./../assets/menu/cross_grave.png');
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    margin-left: 5%;
-    background-size: 350px;
-  }
-
   @keyframes slide {
     0% {
       transform: translate3d(0, 0, 0);
@@ -218,14 +152,18 @@ export default {
     background-color: #303940;
   }
 
-  h1 {
-    text-align: center;
-    font-size: 3rem;
-    color: #fefefe;
+  .logo {
+    margin: 0 auto;
+    height: 240px;
+    width: 360px;
   }
 
   ul {
     list-style-type: none;
+  }
+
+  #content ul {
+    margin-top: -20px;
   }
 
   #dev-tools li:first-of-type {
@@ -245,7 +183,7 @@ export default {
     height: 33%;
     min-height: 250px;
     position: absolute;
-    top: 33%;
+    top: 20%;
     width: 100%;
     margin: 0 auto;
   }

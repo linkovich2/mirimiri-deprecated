@@ -46,14 +46,16 @@ export default {
   ul {
     margin-top: 20px;
     list-style-type: none;
-    columns: 3;
   }
 
   li {
     text-align: center;
-    margin: 5px;
+    margin: 5px 0;
+    padding: 10px;
     border: 1px solid rgba(0,0,0,0);
     cursor: pointer;
+    width: 33%;
+    float: left;
   }
 
   .selected {

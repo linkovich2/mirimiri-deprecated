@@ -17,6 +17,9 @@ module.exports = defineConfig({
           uninstallerIcon: 'src/assets/icon.ico',
           oneClick: false,
           allowToChangeInstallationDirectory: true
+        },
+        mac: {
+          icon: 'src/assets/icon.icns'
         }
       }
     }

@@ -4,6 +4,7 @@ module.exports = defineConfig({
   pluginOptions: {
     electronBuilder: {
       nodeIntegration: true,
+      customFileProtocol: './',
       builderOptions: {
         appId: 'com.lightlychard.miri',
         productName: 'MiriMiri'

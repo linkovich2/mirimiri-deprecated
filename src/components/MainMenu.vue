@@ -3,12 +3,6 @@
     <div id="dark-overlay"></div>
     <div class="stars-overlay"></div>
     <div class="bg-overlay"></div>
-    <!-- <div class="planet-container tr">
-      <div class="shadeland planet"></div>
-    </div>
-    <div class="planet-container br">
-      <div class="vera planet"></div>
-    </div> -->
     <div class="grass-overlay"></div>
     <div class="clouds left"></div>
     <div class="clouds right"></div>

@@ -6,7 +6,7 @@
 
     <ul>
       <li v-for="(location, index) in filteredLocations.slice(0, limit)" :key="location">
-        <strong>{{ location.replace('.json', '') }}</strong>
+        <strong><router-link :to="getLink(location)">{{ location.replace('.json', '') }}</router-link></strong>
         <span class="delete" @click="deleteLocation(location, index)">x</span>
       </li>
     </ul>
@@ -26,7 +26,7 @@
 const { ipcRenderer } = require('electron')
 
 export default {
-  name: 'LocationEditor',
+  name: 'LocationIndex',
   data() {
     return {
       locations: [],
@@ -69,6 +69,9 @@ export default {
           this.locations.splice(index, 1)
         })
       }
+    },
+    getLink(location) {
+      return `/dev/locations/${location}`
     }
   },
   computed: {

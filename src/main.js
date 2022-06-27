@@ -9,7 +9,8 @@ import MainMenu from './components/MainMenu.vue'
 import TravelScreen from './components/TravelScreen.vue'
 import PlayScreen from './components/PlayScreen.vue'
 import CharacterCreate from './components/CharacterCreate.vue'
-import Locations from './components/dev/Locations.vue'
+import LocationIndex from './components/dev/Locations.vue'
+import LocationEditor from './components/dev/LocationEditor.vue'
 
 import Game from './engine/game.js'
 import Renderer from './engine/renderer.js'
@@ -24,7 +25,8 @@ ipcRenderer.invoke('dev-mode?').then((devMode) => {
     { path: '/travel', component: TravelScreen },
     { path: '/play', component: PlayScreen },
     { path: '/create', component: CharacterCreate },
-    { path: '/dev/locations', component: Locations },
+    { path: '/dev/locations', component: LocationIndex },
+    { name: 'dev-location', path: '/dev/locations/:id', component: LocationEditor },
     { path: '/:pathMatch(./dev/*)', beforeEnter(to, from, next) {
       if (!devMode) {
         next('/menu')

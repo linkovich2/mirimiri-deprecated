@@ -15,6 +15,10 @@
       <h3>New Location</h3>
       <input type="text" v-model="newLocation.id" placeholder="Unique ID" />
       <input type="text" v-model="newLocation.name" placeholder="Name" />
+      <label>Width</label>
+      <input type="number" v-model="newLocation.width" />
+      <label>Height</label>
+      <input type="number" v-model="newLocation.height" />
       <button @click="createLocation">Create</button>
     </form>
 
@@ -33,7 +37,9 @@ export default {
       resource: 'locations',
       newLocation: {
         name: "",
-        id: ""
+        id: "",
+        width: 1000, // default
+        height: 600 // default
       },
       search: "",
       limit: 15
@@ -50,7 +56,14 @@ export default {
     createLocation(e) {
       e.preventDefault()
 
-      if (/\s/g.test(this.newLocation.id) || this.locations.includes(this.newLocation.id + '.json') || this.newLocation.name.length <= 0) {
+      // validation rules
+      let validLocation = /\s/g.test(this.newLocation.id)
+        || this.locations.includes(this.newLocation.id + '.json')
+        || this.newLocation.name.length <= 0
+        || !!Math.max(0, this.location.height)
+        || !!Math.max(0, this.location.weight)
+
+      if (validLocation) {
         return; // @todo separate this out with appropriate error messages
       }
 
@@ -71,7 +84,7 @@ export default {
       }
     },
     getLink(location) {
-      return `/dev/locations/${location}`
+      return `/dev/locations/${location.replace('.json', '')}`
     }
   },
   computed: {
@@ -95,7 +108,7 @@ export default {
 
   input {
     display: block;
-    margin: 20px auto;
+    margin: 0 auto 20px auto;
     text-align: center;
   }
 

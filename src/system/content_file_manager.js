@@ -13,7 +13,7 @@ exports.ContentFileManager = class {
   }
 
   load(filePath, devMode = false) {
-    return fs.readFileSync(this.getPath(filePath, devMode))
+    return fs.readFileSync(this.getPath(filePath, devMode), 'utf-8')
   }
 
   list(dirPath, devMode = false) {

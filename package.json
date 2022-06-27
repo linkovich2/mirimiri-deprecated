@@ -1,6 +1,6 @@
 {
   "name": "mirimiri",
-  "version": "0.1.2",
+  "version": "0.1.36",
   "private": true,
   "scripts": {
     "start": "npm run electron:serve",

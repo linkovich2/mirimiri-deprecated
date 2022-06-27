@@ -7,7 +7,17 @@ module.exports = defineConfig({
       customFileProtocol: './',
       builderOptions: {
         appId: 'com.lightlychard.miri',
-        productName: 'MiriMiri'
+        productName: 'MiriMiri',
+        win: {
+          icon: 'src/assets/icon.ico',
+          target: [ 'nsis' ]
+        },
+        nsis: {
+          installerIcon: 'src/assets/icon.ico',
+          uninstallerIcon: 'src/assets/icon.ico',
+          oneClick: false,
+          allowToChangeInstallationDirectory: true
+        }
       }
     }
   }

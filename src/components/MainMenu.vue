@@ -17,13 +17,6 @@
       </ul>
     </div>
 
-    <div id="dev-tools" v-if="devMode">
-      <ul>
-        <li>Dev Tools</li>
-        <li><router-link to="/splash">Test Splash</router-link></li>
-        <li><router-link to="/dev/locations">Locations</router-link></li>
-      </ul>
-    </div>
     <OptionsModal v-if="showOptions" @close="showOptions = false" />
     <LoadModal v-if="saves.length > 0 && showLoad" @close="showLoad = false" />
   </div>
@@ -37,7 +30,7 @@ import LoadModal from './menu/LoadModal.vue'
 
 export default {
   name: 'MainMenu',
-  inject: ['game', 'devMode'],
+  inject: ['game'],
   data() {
     return {
       showOptions: false,

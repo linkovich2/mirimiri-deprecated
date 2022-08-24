@@ -8,7 +8,6 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 const { Settings, SaveManager, ContentFileManager } = require('./system')
 const settings            = new Settings();
 const saveManager         = new SaveManager();
-const contentFileManager  = new ContentFileManager();
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -118,4 +117,3 @@ ipcMain.handle('dev-mode?', () => {
 
 settings.registerHandlers()
 saveManager.registerHandlers()
-contentFileManager.registerHandlers()

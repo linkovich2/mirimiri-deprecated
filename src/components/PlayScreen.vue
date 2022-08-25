@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <div class="debug-menu">Playing as: {{ game.character.name }} | Debug: <router-link to="/travel">Travel</router-link></div>
+    <div class="debug-menu">Playing as: {{ game.player.character.name }} | Debug: <router-link to="/travel">Travel</router-link></div>
     <div class="settings-cog" @contextmenu="settingsContext($event)" @click="settingsContext($event)">&#9881;</div>
   </div>
 </template>

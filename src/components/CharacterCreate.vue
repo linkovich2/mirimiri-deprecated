@@ -5,6 +5,11 @@
       <input :class="{ invalid: (character.name.length <= 0) && submitted }" v-model="character.name" type="text" placeholder="Name" />
       <span class="error" v-if="(character.name.length <= 0) && submitted">Your character needs a name!</span>
 
+      <h2>Background Options</h2>
+      <ul>
+        <li :class="{ selected: background.id == character.background }" v-for="(background) in background_manager.backgrounds" :key="background.id" @click="character.background = background.id">{{ background.name }}</li>
+      </ul>
+
       <br />
       <button @click="create">Create</button>
       <button @click="$router.push('/menu')">Cancel</button>
@@ -13,16 +18,23 @@
 </template>
 
 <script>
+import BackgroundManager from '../engine/player/background_manager.js'
+
 export default {
   name: 'CharacterCreate',
   inject: ['game'],
   data() {
     return {
       character: {
-        name: ""
+        name: "",
+        background: ""
       },
+      background_manager: {},
       submitted: false
     }
+  },
+  mounted() {
+    this.background_manager = new BackgroundManager()
   },
   methods: {
     create() {

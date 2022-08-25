@@ -5,7 +5,7 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-const { Settings, SaveManager, ContentFileManager } = require('./system')
+const { Settings, SaveManager } = require('./system')
 const settings            = new Settings();
 const saveManager         = new SaveManager();
 

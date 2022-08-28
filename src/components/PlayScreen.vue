@@ -12,7 +12,7 @@ export default {
   name: 'PlayScreen',
   inject: ['game', 'renderer', 'devMode'],
   mounted() {
-    this.renderer.create()
+    this.renderer.create(this.game.location())
   },
   unmounted() {
     this.renderer.destroy()

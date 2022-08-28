@@ -1,6 +1,7 @@
 import EventEmitter from './event_emitter.js'
 import Player from './player.js'
-const { ipcRenderer } = require('electron')
+import LocationManager from './location_manager.js'
+import ClientSaveManager from './client_save_manager.js'
 
 export default class Game extends EventEmitter {
   constructor() {
@@ -8,23 +9,24 @@ export default class Game extends EventEmitter {
     this.player = new Player()
   }
 
+  location() {
+    return LocationManager.lookup(this.player.locationKey())
+  }
+
   save(data, callback) {
-    ipcRenderer.invoke('save', data).then((save) => {
+    ClientSaveManager.save(data, (save) => {
       this.load(save.id, callback)
     })
   }
 
   load(id, callback) {
-    ipcRenderer.invoke('load', id).then((save) => {
-      // @todo this is expanded later to also apply other game information from the save file
+    ClientSaveManager.load(id, (save) => {
       this.player.character = save.character
-      callback()
+      callback(save)
     })
   }
 
   saves(callback) {
-    ipcRenderer.invoke('get-saves').then((saves) => {
-      callback(saves)
-    })
+    ClientSaveManager.saves(callback)
   }
 }

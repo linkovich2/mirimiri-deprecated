@@ -1,7 +1,7 @@
 import SellswordKraJafiq from './sellsword_krajafiq.js'
 
 export default {
-  list: [
-    SellswordKraJafiq
-  ]
+  list: {
+    "sellsword_krajafiq": SellswordKraJafiq
+  }
 }

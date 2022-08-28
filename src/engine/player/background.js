@@ -1,6 +1,5 @@
 export default class Background {
   name      = "background name"
-  id        = "background unique identifier"
   location  = "location code"
   equipment = []
 

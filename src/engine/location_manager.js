@@ -1,7 +1,7 @@
 import locations from './locations'
 
 export default class LocationManager {
-  static lookUp(id) {
+  static lookup(id) {
     return locations.list[id]
   }
 }

@@ -3,10 +3,14 @@ import backgrounds from './backgrounds'
 export default class BackgroundManager {
   constructor() {
     this.backgrounds = {}
-    backgrounds.list.forEach(backgroundClass => {
-      let background = new backgroundClass()
-      this.backgrounds[background.id] = background
+    Object.keys(backgrounds.list).forEach(key => {
+      let background = new backgrounds.list[key]()
+      this.backgrounds[key] = background
     })
+  }
+
+  static lookup(id) {
+    return new backgrounds.list[id]()
   }
 
   filtered(character) {

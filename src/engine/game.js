@@ -22,6 +22,7 @@ export default class Game extends EventEmitter {
   load(id, callback) {
     ClientSaveManager.load(id, (save) => {
       this.player.character = save.character
+      this.player.saveId = id
       callback(save)
     })
   }

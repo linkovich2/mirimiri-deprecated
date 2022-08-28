@@ -7,12 +7,12 @@ export default class Player {
   }
 
   locationKey() {
-    return this.location || this.setupStartingLocation()
+    return this.character.location || this.setupStartingLocation()
   }
 
   setupStartingLocation() {
     let key = BackgroundManager.lookup(this.character.background).location
-    this.location = key
+    this.character.location = key
     ClientSaveManager.save(this)
 
     return key

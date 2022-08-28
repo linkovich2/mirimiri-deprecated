@@ -7,7 +7,7 @@
 
       <h2>Background Options</h2>
       <ul>
-        <li :class="{ selected: background.id == character.background }" v-for="(background) in background_manager.backgrounds" :key="background.id" @click="character.background = background.id">{{ background.name }}</li>
+        <li :class="{ selected: key == character.background }" v-for="(background, key) in background_manager.backgrounds" :key="key" @click="character.background = key">{{ background.name }}</li>
       </ul>
 
       <br />
@@ -89,5 +89,9 @@ export default {
 
   h1 {
     margin-bottom: 10px;
+  }
+
+  .selected {
+    border: 1px solid red;
   }
 </style>

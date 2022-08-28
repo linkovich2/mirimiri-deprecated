@@ -41,13 +41,19 @@ exports.SaveManager = class {
   save(data) {
     // this needs to be much more complex in the future, saving multiple files and splitting up the data options appropriately
     // alternatively, this can be changed to "initialSave" and later we can respect specific types of changes through specific files
-    let uniqueSlug = (Math.random() + 1).toString(36).substring(7)
-    let folderName = `${data.character.name.toLowerCase().replace(/\s+/g, '')}-${uniqueSlug}`
-    let folderPath = path.join(savesDataPath, folderName)
-    data['id'] = folderName
-    fs.mkdirSync(folderPath)
-    fs.writeFileSync(path.join(folderPath, characterFile), JSON.stringify(data.character))
+    let folderPath = ''
 
+    if (data.saveId) {
+      folderPath = path.join(savesDataPath, data.saveId)
+    } else {
+      let uniqueSlug = (Math.random() + 1).toString(36).substring(7)
+      let folderName = `${data.character.name.toLowerCase().replace(/\s+/g, '')}-${uniqueSlug}`
+      folderPath = path.join(savesDataPath, folderName)
+      data['id'] = folderName
+      fs.mkdirSync(folderPath)
+    }
+
+    fs.writeFileSync(path.join(folderPath, characterFile), JSON.stringify(data.character))
     return data
   }
 
@@ -57,7 +63,8 @@ exports.SaveManager = class {
     let character = JSON.parse(fs.readFileSync(characterPath))
 
     return {
-      character: character
+      character: character,
+      id: id
     }
   }
 

@@ -32,7 +32,7 @@ export default class Renderer {
       interaction: this.pixiApp.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
     })
 
-    this.pixiApp.renderer.backgroundColor = 0xFEFEFE
+    this.pixiApp.renderer.backgroundColor = 0xDDDDDD
     this.pixiApp.stage.addChild(this.viewport)
     this.setupViewport()
 

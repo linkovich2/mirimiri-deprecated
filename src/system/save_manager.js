@@ -41,7 +41,6 @@ exports.SaveManager = class {
   save(data) {
     // this needs to be much more complex in the future, saving multiple files and splitting up the data options appropriately
     // alternatively, this can be changed to "initialSave" and later we can respect specific types of changes through specific files
-    console.log(data)
     let uniqueSlug = (Math.random() + 1).toString(36).substring(7)
     let folderName = `${data.character.name.toLowerCase().replace(/\s+/g, '')}-${uniqueSlug}`
     let folderPath = path.join(savesDataPath, folderName)

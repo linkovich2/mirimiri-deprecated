@@ -10,13 +10,7 @@ const { ipcRenderer } = require('electron')
 
 export default {
   name: 'PlayScreen',
-  inject: ['game', 'renderer', 'devMode'],
-  mounted() {
-    this.renderer.create(this.game.location())
-  },
-  unmounted() {
-    this.renderer.destroy()
-  },
+  inject: ['game', 'devMode'],
   methods: {
     close() {
       ipcRenderer.invoke('quit')
